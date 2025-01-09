@@ -1,5 +1,6 @@
 
-import { Book } from "../domain/models/Book"
+import { Library } from "../../core/Library"
+import { Book } from "../../domain/models/Book"
 
 describe('Library Test', () => {
   let library: Library
@@ -12,13 +13,13 @@ describe('Library Test', () => {
 
   test('addBook_shouldReturnOne', () => {
     library.add(book)
-    expect(library.books.size).toBe(1)
+    expect(library.books.length).toBe(1)
   })
 
   test('removeBook_shouldReturnZero', () => {
     library.add(book)
     library.remove(book)
-    expect(library.books.size).toBe(0)
+    expect(library.books.length).toBe(0)
   })
 
   test('removeBook_shouldThrowError', () => {
