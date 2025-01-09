@@ -12,6 +12,10 @@ export class Book {
   }
 
   reserve(user: User) {
+    if (user.book != null) {
+      throw new Error("You already have a book");
+    }
+
     if (!this.isAvailable) {
       throw new Error("Book already reserved");
     }
