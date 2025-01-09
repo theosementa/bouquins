@@ -22,6 +22,13 @@ describe('Book', () => {
     }).toThrow();
   })
 
+  test('reserve_shouldNotReserveTwoBook', () => {
+    book.reserve(user)
+    expect(() => {
+      book.reserve(user)
+    }).toThrow();
+  })
+
   test('return_shouldReturnBook', () => {
     book.reserve(user)
     book.return(user)
