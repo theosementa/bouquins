@@ -16,7 +16,10 @@ describe('Book', () => {
 
   test('reserve_shouldNotReserveBook', () => {
     const user = new User('Théo')
-    expect(book.reserve(user)).toThrow()
+    book.isAvailable = false
+    expect(() => {
+      book.reserve(user)
+    }).toThrow();
   })
 
 })
