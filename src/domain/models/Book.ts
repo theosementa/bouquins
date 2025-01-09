@@ -16,7 +16,7 @@ export class Book {
       throw new Error("Book already reserved");
     }
 
-    user.books.push(this);
+    user.book = this
     this.isAvailable = false;
   }
 

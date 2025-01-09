@@ -2,10 +2,10 @@ import { Book } from "./Book"
 
 export class User {
   name: string
-  books: Book[]
+  book?: Book
 
-  constructor(name: string, books: Book[] = []) {
+  constructor(name: string, book?: Book) {
     this.name = name
-    this.books = books
+    this.book = book
   }
 }
