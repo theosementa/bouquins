@@ -1,14 +1,17 @@
 
 import { Library } from "../../core/Library"
 import { Book } from "../../domain/models/Book"
+import { User } from "../../domain/models/User"
 
 describe('Library Test', () => {
   let library: Library
   let book: Book
+  let user: User
 
   beforeEach(() => {
     library = new Library()
     book = new Book('TestingBook', 2025)
+    user = new User('Théo')
   })
 
   test('add new book', () => {
@@ -26,6 +29,38 @@ describe('Library Test', () => {
     expect(() => {
       library.remove(book)
     }).toThrow()
+  })
+
+
+  test('reserve book', () => {
+    library.reserve(book, user)
+    expect(book.isAvailable).toBe(false)
+  })
+
+  test('reserve unavailable book', () => {
+    book.isAvailable = false
+    expect(() => {
+      library.reserve(book, user)
+    }).toThrow();
+  })
+
+  test('reserve book when user has book', () => {
+    library.reserve(book, user)
+    expect(() => {
+      library.reserve(book, user)
+    }).toThrow();
+  })
+
+  test('return reserved book', () => {
+    library.reserve(book, user)
+    library.return(book, user)
+    expect(book.isAvailable).toBe(true)
+  })  
+
+  test('return without reserve', () => {
+    expect(() => {
+      library.return(book, user)
+    }).toThrow();
   })
 
 })
