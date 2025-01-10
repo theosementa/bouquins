@@ -1,4 +1,5 @@
 import { Book } from "../domain/models/Book";
+import { User } from "../domain/models/User";
 
 export class Library {
 
@@ -14,5 +15,27 @@ export class Library {
     }
 
     this.books = this.books.filter((bookIn) => bookIn !== book )
+  }
+
+  reserve(book: Book, user: User) {
+    if (user.book != null) {
+      throw new Error("You already have a book");
+    }
+
+    if (!book.isAvailable) {
+      throw new Error("Book already reserved");
+    }
+
+    user.book = book
+    book.isAvailable = false
+  }
+
+  return(book: Book, user: User) {
+    if (user.book === null) {
+      throw new Error(`Bro you don't have a book...`)
+    }
+
+    user.book = null
+    book.isAvailable = true
   }
 }

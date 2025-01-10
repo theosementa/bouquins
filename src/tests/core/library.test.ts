@@ -14,11 +14,13 @@ describe('Library Test', () => {
     user = new User('Théo')
   })
 
+  // Add
   test('add new book', () => {
     library.add(book)
     expect(library.books.length).toBe(1)
   })
 
+  // Remove
   test('remove exiting book', () => {
     library.add(book)
     library.remove(book)
@@ -31,7 +33,7 @@ describe('Library Test', () => {
     }).toThrow()
   })
 
-
+  // Reserve
   test('reserve book', () => {
     library.reserve(book, user)
     expect(book.isAvailable).toBe(false)
@@ -51,6 +53,7 @@ describe('Library Test', () => {
     }).toThrow();
   })
 
+  // Return
   test('return reserved book', () => {
     library.reserve(book, user)
     library.return(book, user)

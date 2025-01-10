@@ -1,4 +1,3 @@
-import { User } from "./User"
 
 export class Book {
   name: string
@@ -9,28 +8,6 @@ export class Book {
     this.name = name
     this.releaseYear = releaseYear
     this.isAvailable = isAvailable
-  }
-
-  reserve(user: User) {
-    if (user.book != null) {
-      throw new Error("You already have a book");
-    }
-
-    if (!this.isAvailable) {
-      throw new Error("Book already reserved");
-    }
-
-    user.book = this
-    this.isAvailable = false;
-  }
-
-  return(user: User) {
-    if (user.book === null) {
-      throw new Error(`Bro you don't have a book...`)
-    }
-
-    user.book = null
-    this.isAvailable = true
   }
 
 }
