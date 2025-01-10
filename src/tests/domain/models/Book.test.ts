@@ -10,32 +10,32 @@ describe('Book', () => {
     book = new Book('Theo Book', 2025)
   })
 
-  test('reserve_shouldReserveBook', () => {
+  test('reserve book', () => {
     book.reserve(user)
     expect(book.isAvailable).toBe(false)
   })
 
-  test('reserve_shouldNotReserveBook', () => {
+  test('reserve unavailable book', () => {
     book.isAvailable = false
     expect(() => {
       book.reserve(user)
     }).toThrow();
   })
 
-  test('reserve_shouldNotReserveTwoBook', () => {
+  test('reserve book when user has book', () => {
     book.reserve(user)
     expect(() => {
       book.reserve(user)
     }).toThrow();
   })
 
-  test('return_shouldReturnBook', () => {
+  test('return reserved book', () => {
     book.reserve(user)
     book.return(user)
     expect(book.isAvailable).toBe(true)
   })  
 
-  test('return_shouldNotReturnBook', () => {
+  test('return without reserve', () => {
     expect(() => {
       book.return(user)
     }).toThrow();

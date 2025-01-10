@@ -11,18 +11,18 @@ describe('Library Test', () => {
     book = new Book('TestingBook', 2025)
   })
 
-  test('addBook_shouldReturnOne', () => {
+  test('add new book', () => {
     library.add(book)
     expect(library.books.length).toBe(1)
   })
 
-  test('removeBook_shouldReturnZero', () => {
+  test('remove exiting book', () => {
     library.add(book)
     library.remove(book)
     expect(library.books.length).toBe(0)
   })
 
-  test('removeBook_shouldThrowError', () => {
+  test('remove non-exitent book', () => {
     expect(() => {
       library.remove(book)
     }).toThrow()
